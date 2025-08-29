@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Car Customizer Pro</title>
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+  <div class="customizer-container">
+    <canvas id="car-canvas" aria-label="3D car viewer" title="Drag to rotate, scroll/pinch to zoom"></canvas>
+
+    <aside class="control-panel" aria-label="Customization panel">
+      <header class="brand">
+        <div class="logo">🚗</div>
+        <div class="title">
+          <strong>CarLab</strong>
+          <span>3D Customizer</span>
+        </div>
+      </header>
+
+      <section class="group">
+        <h3><span class="icon">🏁</span> Model</h3>
+        <div class="btn-group">
+          <button class="chip model-btn" data-model="aston_martin_db11">Aston</button>
+          <button class="chip model-btn" data-model="tesla_roadster_2020">Tesla</button>
+          <button class="chip model-btn" data-model="porshe_gt3_rs">Porsche</button>
+          <button class="chip model-btn" data-model="ford_raptor">Raptor</button>
+          <button class="chip model-btn" data-model="sportcar_concept_chanel_roadster_by_max_hordin">Sport Car</button>
+          <button class="chip model-btn" data-model="1956_bmw_isetta_300_convertible">BMV Isetta</button>
+          <button class="chip model-btn" data-model="mercedes_slr">Mercedes</button>
+
+        </div>
+      </section>
+
+      <section class="group">
+        <h3><span class="icon">🎨</span> Body Paint</h3>
+        <div class="swatches">
+          <button class="color-swatch" data-preset="red_matte" style="--swatch:#b40000" title="Red Matte"></button>
+          <button class="color-swatch" data-preset="blue_metallic" style="--swatch:#1e62ff" title="Blue Metallic"></button>
+          <button class="color-swatch" data-preset="black_glossy" style="--swatch:#111111" title="Black Glossy"></button>
+        </div>
+        <div class="controls">
+          <label>Custom Color <input type="color" id="bodyColorPicker" value="#b40000"></label>
+          <label>Metalness <input type="range" id="bodyMetal" min="0" max="1" step="0.01" value="0.6"></label>
+          <label>Roughness <input type="range" id="bodyRough" min="0" max="1" step="0.01" value="0.2"></label>
+          <label>Clearcoat <input type="range" id="bodyCC" min="0" max="1" step="0.01" value="0.8"></label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h3><span class="icon">🛞</span> Wheels</h3>
+        <div class="btn-group">
+          <button class="chip rims-style" data-rims="silver">Silver</button>
+          <button class="chip rims-style" data-rims="carbon">Carbon</button>
+        </div>
+        <div class="controls">
+          <label>Rim Color <input type="color" id="rimColorPicker" value="#c9ccd1"></label>
+          <label>Metalness <input type="range" id="rimMetal" min="0" max="1" step="0.01" value="1.0"></label>
+          <label>Roughness <input type="range" id="rimRough" min="0" max="1" step="0.01" value="0.25"></label>
+          <label>Brake Calipers <input type="color" id="caliperColorPicker" value="#ff0000"></label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h3><span class="icon">🪟</span> Glass</h3>
+        <div class="controls">
+          <label>Tint Color <input type="color" id="glassColorPicker" value="#3fa7ef"></label>
+          <label>Tint Strength <input type="range" id="glassOpacity" min="0" max="1" step="0.01" value="0.25"></label>
+          <label>Roughness <input type="range" id="glassRough" min="0" max="1" step="0.01" value="0.05"></label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h3><span class="icon">🛋️</span> Interior</h3>
+        <div class="controls">
+          <label>Seat Color <input type="color" id="seatColorPicker" value="#c28f5c"></label>
+          <label>Dashboard Accent <input type="color" id="dashColorPicker" value="#222222"></label>
+          <label>Ambient Light <input type="range" id="ambientLevel" min="0" max="3" step="0.05" value="0.7"></label>
+          <label>Headlights <input type="range" id="headlightLevel" min="0" max="8" step="0.1" value="1.8"></label>
+        </div>
+      </section>
+
+      
+
+      <section class="group utilities">
+        <div class="btn-row">
+          <button id="btn-home" class="icon-btn" title="Home view">
+            <svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9H6v-9H3z"/></svg>
+          </button>
+          <button id="btn-reset" class="icon-btn" title="Reset all">
+            <svg viewBox="0 0 24 24"><path d="M6 13a6 6 0 0112 0h2a8 8 0 10-2.34 5.66l-1.42-1.42A6 6 0 116 13z"/></svg>
+          </button>
+          <button id="btn-rotate" class="icon-btn" title="Toggle auto-rotate">
+            <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6a6 6 0 016 6h2A8 8 0 0012 4zM4.93 6.34L3.5 7.76 6 10.26A7.96 7.96 0 004 16a8 8 0 0012.9 6.32l1.6 1.6 1.41-1.41L4.93 6.34z"/></svg>
+          </button>
+          <button id="btn-snapshot" class="icon-btn" title="Save snapshot">
+            <svg viewBox="0 0 24 24"><path d="M4 7h4l2-2h4l2 2h4v12H4zM12 9a5 5 0 110 10 5 5 0 010-10z"/></svg>
+          </button>
+          <button id="btn-share" class="icon-btn" title="Share design">
+            <svg viewBox="0 0 24 24"><path d="M18 8a3 3 0 00-2.82 2.01L8.91 12.7a3 3 0 000 .6l6.27 2.7a3 3 0 102.02-1.9l-6.27-2.7a3 3 0 000-.6l6.27-2.7A3 3 0 0018 8zM6 12a3 3 0 100 6 3 3 0 000-6zM18 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
+          </button>
+          <button id="btn-ar" class="icon-btn" title="AR mode">
+            <svg viewBox="0 0 24 24"><path d="M12 7l9 5-9 5-9-5 9-5zM12 2L0 9v10l12 7 12-7V9z"/></svg>
+          </button>
+          <button id="btn-vr" class="icon-btn" title="VR mode">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18a2 2 0 012 2v6a2 2 0 01-2 2h-4l-2-3h-4l-2 3H3a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>
+          </button>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

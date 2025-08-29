@@ -1,0 +1,422 @@
+/* General Layout & Fonts */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1a1a1a; /* Changed for readability on a light background */
+    background-color: #f1f1f1; /* Changed to a light color */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.customizer-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+canvas#car-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* UI Panel */
+.ui-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background: rgba(26, 26, 26, 0.8); /* Kept black as requested */
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    color: #f1f1f1; /* Keep text white for a dark panel */
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: #aaa; /* Keep text light for a dark panel */
+    margin-top: 0;
+}
+
+.controls-section {
+    margin-top: 2rem;
+}
+
+.control-group {
+    margin-bottom: 2rem;
+}
+
+.control-group h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #333; /* Kept dark border for the panel */
+    padding-bottom: 0.5rem;
+}
+
+/* Buttons and Swatches */
+.car-model-options,
+.custom-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.model-btn,
+.custom-btn {
+    background: #333; /* Kept dark for the panel */
+    color: #f1f1f1; /* Kept white for dark buttons */
+    border: 2px solid #555; /* Kept dark border for the panel */
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.model-btn:hover,
+.custom-btn:hover {
+    border-color: #888;
+    background: #444;
+}
+
+.model-btn.active {
+    background: #007bff;
+    border-color: #007bff;
+}
+
+.custom-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+
+/* --- Customizer layout --- */
+.customizer-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #f1f1f1; /* Changed to a light color */
+}
+#car-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none;
+}
+
+.control-panel {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    bottom: 16px;
+    width: 320px;
+    background: rgba(26, 26, 26, 0.9); /* Kept black as requested */
+    backdrop-filter: blur(8px);
+    border: 1px solid #2b2b2f; /* Kept dark border */
+    border-radius: 16px;
+    padding: 16px;
+    overflow: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    color: #e9ecf1; /* Changed text to a light color */
+}
+.control-panel h2 {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.control-panel section {
+    margin-top: 14px;
+}
+.control-panel h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.chip {
+    background: #16161a; /* Kept dark for the panel */
+    border: 1px solid #2c2c32; /* Kept dark border */
+    border-radius: 999px;
+    padding: 8px 12px;
+    color: #eaeaf0; /* Kept light text */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.chip:hover {
+    transform: translateY(-1px);
+    border-color: #4a4a56;
+}
+.chip.active {
+    background: #2a2a34;
+    border-color: #5a5a66;
+}
+
+.swatches {
+    display: flex;
+    gap: 10px;
+}
+.color-swatch {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--swatch, #999);
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.color-swatch:hover {
+    transform: scale(1.05);
+    border-color: #4a76ff;
+}
+
+.utilities .btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: #18181b; /* Kept dark for the panel */
+    border: 1px solid #2b2b2f; /* Kept dark border */
+    border-radius: 10px;
+    cursor: pointer;
+}
+.icon-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #e6e6ee; /* Kept light icon */
+    opacity: 0.9;
+}
+.icon-btn:hover {
+    border-color: #4a4a56;
+    transform: translateY(-1px);
+}
+
+/* small screens: move panel to bottom */
+@media (max-width: 900px) {
+    .control-panel {
+        right: 8px;
+        left: 8px;
+        bottom: 8px;
+        top: auto;
+        width: auto;
+        height: auto;
+    }
+}
+
+
+/* Modern panel + inputs */
+.customizer-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #f1f1f1; /* Changed to a light color */
+}
+#car-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.control-panel {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    bottom: 16px;
+    width: 360px;
+    background: linear-gradient(180deg, rgba(20, 22, 28, 0.9), rgba(14, 16, 20, 0.9)); /* Kept dark as requested */
+    backdrop-filter: blur(10px);
+    border: 1px solid #252a34; /* Kept dark border */
+    border-radius: 20px;
+    padding: 16px;
+    overflow: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    color: #e9ecf1; /* Kept light text */
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.brand .logo {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.1));
+}
+.brand .title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+.brand .title strong {
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+}
+.brand .title span {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.group {
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08); /* Kept light dashed line */
+}
+.group h3 {
+    margin: 4px 0 10px;
+    font-size: 0.95rem;
+    opacity: 0.95;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.group .icon {
+    opacity: 0.8;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.chip {
+    background: #13151a; /* Kept dark for the panel */
+    border: 1px solid #2b2f39; /* Kept dark border */
+    color: #e9ecf1; /* Kept light text */
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.chip:hover {
+    transform: translateY(-1px);
+    border-color: #3b4151;
+}
+.chip.active {
+    background: #1b1f2a;
+    border-color: #4a5164;
+}
+
+.swatches {
+    display: flex;
+    gap: 10px;
+}
+.color-swatch {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--swatch, #999);
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.color-swatch:hover {
+    transform: scale(1.05);
+    border-color: #4a76ff;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.controls label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+.controls input[type="range"] {
+    width: 150px;
+}
+.controls input[type="color"] {
+    width: 36px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #2b2f39;
+    background: #0f1116;
+    border-radius: 6px;
+}
+
+.utilities .btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: #12151a; /* Kept dark for the panel */
+    border: 1px solid #2a2f3b; /* Kept dark border */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.icon-btn:hover {
+    border-color: #4a5164;
+    transform: translateY(-1px);
+}
+.icon-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #e9ecf1; /* Kept light icon */
+    opacity: 0.9;
+}
+
+@media (max-width: 980px) {
+    .control-panel {
+        left: 10px;
+        right: 10px;
+        top: auto;
+        bottom: 10px;
+        height: auto;
+        width: auto;
+    }
+}
